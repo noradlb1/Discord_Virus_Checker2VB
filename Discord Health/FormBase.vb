@@ -27,7 +27,7 @@ Public Class FormBase
 
     Private Sub LaunchCheck() Handles BtnCheck.Click
         Dim sessionUserName As String = Environment.UserName
-        For Each Dir As String In System.IO.Directory.GetDirectories("C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9008")
+        For Each Dir As String In System.IO.Directory.GetDirectories("C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9010")
             Dim dirInfo As New System.IO.DirectoryInfo(Dir)
             If Strings.Left(dirInfo.Name, 1) = "0" Or
                 Strings.Left(dirInfo.Name, 1) = "1" Or
@@ -43,7 +43,7 @@ Public Class FormBase
             End If
         Next
 
-        Using sr As StreamReader = File.OpenText("C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9008" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js")
+        Using sr As StreamReader = File.OpenText("C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9010" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js")
             If sr.ReadLine() <> "module.exports = require('./discord_modules.node');" Then
                 infection = 1
             Else
@@ -51,7 +51,7 @@ Public Class FormBase
             End If
         End Using
 
-        Using sr As StreamReader = File.OpenText("C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9008" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js")
+        Using sr As StreamReader = File.OpenText("C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9010" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js")
             If sr.ReadLine() <> "module.exports = require('./core.asar');" Then
                 If infection = 1 Then
                     infection = 3
@@ -65,15 +65,15 @@ Public Class FormBase
 
         Select Case infection
             Case 1
-                MsgBox("The file 'C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9008" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js' have been infected." &
+                MsgBox("The file 'C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9010" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js' have been infected." &
                        Chr(10) & Chr(10) & "To avoid stealing of your accounts, passwords, copyboard and so on... Please reinstall Discord (desktop version)")
 
             Case 2
-                MsgBox("The file 'C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9008" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js' have been infected." &
+                MsgBox("The file 'C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9010" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js' have been infected." &
                        Chr(10) & Chr(10) & "To avoid stealing of your accounts, passwords, copyboard and so on... Please reinstall Discord (desktop version)")
 
             Case 3
-                MsgBox("Both files 'C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9008" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js' et 'C:\Users\" & sessionUserName & "\AppData\Local\Discord\" & versionName & "\modules\discord_modules\index.js' have been infected." &
+                MsgBox("Both files 'C:\Users\" & sessionUserName & "\AppData\Local\Discord\app-1.0.9010" & versionName & "\modules\discord_desktop_core-1\discord_desktop_core\index.js' et 'C:\Users\" & sessionUserName & "\AppData\Local\Discord\" & versionName & "\modules\discord_modules\index.js' have been infected." &
                        Chr(10) & Chr(10) & "To avoid stealing of your accounts, passwords, copyboard and so on... Please reinstall Discord (desktop version)")
             Case 0
                 MsgBox("Your Discord installation have not been compromised, no need to reinstall it." & Chr(10) & "Please stay aware of the links you click on and the servers you may join.")
